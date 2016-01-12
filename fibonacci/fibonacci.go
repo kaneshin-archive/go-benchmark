@@ -45,10 +45,10 @@ func FibonacciRecursiveGoRoutine(n int) int {
 	return f1 + f0
 }
 
-// FibonacciRecursiveGoRoutineLoop returns a fibonacci value
+// FibonacciRecursiveContinuousGoRoutine returns a fibonacci value
 // The function is recursively defined with go routine continuously
 // to calculate.
-func FibonacciRecursiveGoRoutineLoop(n int) int {
+func FibonacciRecursiveContinuousGoRoutine(n int) int {
 	if n < 2 {
 		return n
 	}
@@ -56,10 +56,10 @@ func FibonacciRecursiveGoRoutineLoop(n int) int {
 	chf1, chf0 := make(chan int), make(chan int)
 
 	go func(f chan int) {
-		f <- FibonacciRecursiveGoRoutineLoop(n - 1)
+		f <- FibonacciRecursiveContinuousGoRoutine(n - 1)
 	}(chf1)
 	go func(f chan int) {
-		f <- FibonacciRecursiveGoRoutineLoop(n - 2)
+		f <- FibonacciRecursiveContinuousGoRoutine(n - 2)
 	}(chf0)
 
 	f1, f0 := <-chf1, <-chf0

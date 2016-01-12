@@ -38,10 +38,10 @@ func TestFibonacciRecursiveGoRoutine(t *testing.T) {
 	}
 }
 
-func TestFibonacciRecursiveGoRoutineLoop(t *testing.T) {
+func TestFibonacciRecursiveContinuousGoRoutine(t *testing.T) {
 	// test the function
 	for i := range fib {
-		testFibonacci(t, i, FibonacciRecursiveGoRoutineLoop)
+		testFibonacci(t, i, FibonacciRecursiveContinuousGoRoutine)
 	}
 }
 
@@ -66,9 +66,9 @@ func BenchmarkFibonacciRecursiveGoRoutine(b *testing.B) {
 	}
 }
 
-func BenchmarkFibonacciRecursiveGoRoutineLoop(b *testing.B) {
+func BenchmarkFibonacciRecursiveContinuousGoRoutine(b *testing.B) {
 	// run the function b.N times
 	for n := 0; n < b.N; n++ {
-		FibonacciRecursiveGoRoutineLoop(10)
+		FibonacciRecursiveContinuousGoRoutine(10)
 	}
 }

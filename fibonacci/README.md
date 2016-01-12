@@ -19,7 +19,7 @@ PASS
 BenchmarkFibonacciLoop                          100000000               12.2 ns/op             0 B/op          0 allocs/op
 BenchmarkFibonacciRecursive                      3000000               436 ns/op               0 B/op          0 allocs/op
 BenchmarkFibonacciRecursiveGoRoutine             1000000              1815 ns/op             192 B/op          2 allocs/op
-BenchmarkFibonacciRecursiveGoRoutineLoop           10000            130769 ns/op           16896 B/op        176 allocs/op
+BenchmarkFibonacciRecursiveContinuousGoRoutine           10000            130769 ns/op           16896 B/op        176 allocs/op
 ok      github.com/eure/go-benchmark/fibonacci  6.255s
 ```
 
@@ -66,16 +66,16 @@ func FibonacciRecursiveGoRoutine(n int) int {
 }
 ```
 
-### FibonacciRecursiveGoRoutineLoop
+### FibonacciRecursiveContinuousGoRoutine
 
 Calculate a value with recursively function and continuously go routine
 
 ```go
-func FibonacciRecursiveGoRoutineLoop(n int) int {
+func FibonacciRecursiveContinuousGoRoutine(n int) int {
 	// ...
 	chf1, chf0 := make(chan int), make(chan int)
-	go func(f chan int) { f <- FibonacciRecursiveGoRoutineLoop(n - 1) }(chf1)
-	go func(f chan int) { f <- FibonacciRecursiveGoRoutineLoop(n - 2) }(chf0)
+	go func(f chan int) { f <- FibonacciRecursiveContinuousGoRoutine(n - 1) }(chf1)
+	go func(f chan int) { f <- FibonacciRecursiveContinuousGoRoutine(n - 2) }(chf0)
 	// ...
 	return
 }
@@ -89,7 +89,7 @@ ok      github.com/eure/go-benchmark/fibonacci  0.106s  coverage: 100.0% of stat
 github.com/eure/go-benchmark/fibonacci/fibonacci.go:5:  FibonacciLoop                   100.0%
 github.com/eure/go-benchmark/fibonacci/fibonacci.go:20: FibonacciRecursive              100.0%
 github.com/eure/go-benchmark/fibonacci/fibonacci.go:29: FibonacciRecursiveGoRoutine     100.0%
-github.com/eure/go-benchmark/fibonacci/fibonacci.go:51: FibonacciRecursiveGoRoutineLoop 100.0%
+github.com/eure/go-benchmark/fibonacci/fibonacci.go:51: FibonacciRecursiveContinuousGoRoutine 100.0%
 total:                                                  (statements)                    100.0%
 ```
 
