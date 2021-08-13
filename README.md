@@ -2,8 +2,7 @@
 
 # Go Benchmark
 
-This repository is contined results of the benchmarkable package.
-
+This repository is contained results of the benchmarkable package.
 
 ## Check It Out!
 
