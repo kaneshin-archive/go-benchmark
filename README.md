@@ -1,6 +1,6 @@
-> Note: This repository is no longer being maintained.
-
 # Go Benchmark
+
+> Note: This repository is no longer being maintained.
 
 This repository is contained results of the benchmarkable package.
 
